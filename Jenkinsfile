@@ -1,10 +1,6 @@
-pipeline {
-    agent any
-    stages {
-        stage('Hello Stage') {
-            steps {
-                echo 'Hello World!!'
-            }
-        }
+stage('Hello Stage') {
+    node('maven') {
+        echo 'Hello world!'
+        sh 'mvn -version'
     }
 }
