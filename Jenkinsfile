@@ -1,6 +1,12 @@
-node('maven') {
-    stage('Hello Stage') {
-        echo 'Hello world!'
-        sh 'mvn -version'
-    }
+pipeline {
+  agent {
+      label 'maven'
+  }
+  stages {
+      stage('oc') {
+          steps {
+              sh 'oc get all'
+          }
+      }
+  }
 }
