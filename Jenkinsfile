@@ -1,12 +1,16 @@
-pipeline {
-  agent {
-      label 'maven'
-  }
-  stages {
-      stage('oc') {
-          steps {
-              sh 'oc get all'
-          }
-      }
-  }
+node('maven') {
+    stage('Build') {
+        echo 'Building...'
+    }
+    stage('Test') {
+        echo 'Testing...'
+    }
+}
+stage ('Promote') {
+    input 'Deploy to Production?'
+}
+node('maven') {
+    stage('Deploy') {
+        echo 'Deploying...'
+    }
 }
