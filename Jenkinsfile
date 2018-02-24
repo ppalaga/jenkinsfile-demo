@@ -7,7 +7,9 @@ node('maven') {
     }
 }
 stage ('Promote') {
-    input 'Deploy to Production?'
+    timeout(time: 5, unit: 'SECONDS') {
+        input 'Deploy to Production?'
+    }
 }
 node('maven') {
     stage('Deploy') {
