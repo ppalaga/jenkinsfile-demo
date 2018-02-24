@@ -1,5 +1,5 @@
-stage('Hello Stage') {
-    node('maven') {
+node('maven') {
+    stage('Hello Stage') {
         echo 'Hello world!'
         sh 'mvn -version'
     }
