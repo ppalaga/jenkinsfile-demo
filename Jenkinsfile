@@ -1,18 +1,16 @@
-node('maven') {
-    stage('Build') {
-        echo 'Building...'
+parallel (
+    a : {
+        node('maven') {
+            stage('Test Linux') {
+                echo 'Building...'
+            }
+        }
+    },
+    b : {
+        node('maven') {
+            stage('Test Windows') {
+                echo 'Building...'
+            }
+        }
     }
-    stage('Test') {
-        echo 'Testing...'
-    }
-}
-stage ('Promote') {
-    timeout(time: 5, unit: 'SECONDS') {
-        input 'Deploy to Production?'
-    }
-}
-node('maven') {
-    stage('Deploy') {
-        echo 'Deploying...'
-    }
-}
+)
